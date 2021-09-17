@@ -141,208 +141,209 @@ plt.title("Error Trajectory(Iris-Verginica or not)")
 #plt.savefig("random_weights/fig9.png")
 plt.show()
 
-'''
-#plotting decision boundary on parameter 1 and 2
-x = []
-y = []
-#print(q5.data_lst)
+# this is for 3D decision boundary of parameter1,2,3
+fig = plt.figure()
+ax = plt.axes(projection='3d')
+x_data=[]
+y_data=[]
+z_data=[]
 for i in range(50):
-  # print(q5.data_lst[i])
-   x.append(q5.data_lst[i][1])
-   y.append(q5.data_lst[i][2])
-#print(x)
-plt.scatter(x,y,color='red',label='Setosa')
-x = []
-y = []
+    x_data.append(q5.data_lst[i][1])
+for i in range(50):
+    y_data.append(q5.data_lst[i][2])
+for i in range(50):
+    z_data.append(q5.data_lst[i][3])
+ax.scatter3D(x_data, y_data, z_data, c=z_data, cmap='Greens', label = 'Setosa');
+x_data=[]
+y_data=[]
+z_data=[]
 for i in range(50,100):
-   x.append(q5.data_lst[i][1])
-   y.append(q5.data_lst[i][2])
-plt.scatter(x,y,color='blue',label='Versicolor')
-x = []
-y = []
+    x_data.append(q5.data_lst[i][1])
+for i in range(50,100):
+    y_data.append(q5.data_lst[i][2])
+for i in range(50,100):
+    z_data.append(q5.data_lst[i][3])
+ax.scatter3D(x_data, y_data, z_data, c=z_data, cmap='Reds', label = 'Versicolor');
+x_data=[]
+y_data=[]
+z_data=[]
 for i in range(100,150):
-   x.append(q5.data_lst[i][1])
-   y.append(q5.data_lst[i][2])
-plt.scatter(x,y,color='green',label='Virginica')
+    x_data.append(q5.data_lst[i][1])
+for i in range(100,150):
+    y_data.append(q5.data_lst[i][2])
+for i in range(100,150):
+    z_data.append(q5.data_lst[i][3])
+ax.scatter3D(x_data, y_data, z_data, c=z_data, cmap='Blues', label = 'Virginica');
 
-#print(result1[0])
-x = np.linspace(0,10,100)
-y = -(result1[0][0]/result1[0][2]) - (result1[0][1]/result1[0][2])*x
-plt.plot(x,y)
-plt.xlabel("Parameter1")
-plt.ylabel("Parameter2")
-plt.title("Decision Boundary")
-plt.legend()
-plt.savefig("Q5a/fig4.png")
+def f1(x, y, result):
+
+    return  (result[0][0] - (result[0][1]*x) - (result[0][2]*y) )/result[0][3]
+
+x = np.linspace(-6, 6, 30)
+y = np.linspace(-6, 6, 30)
+X, Y = np.meshgrid(x, y)
+Z = f1(X, Y, result1)
+ax.contour3D(X, Y, Z, 50, cmap='binary')
+ax.set_xlabel('parameter 1')
+ax.set_ylabel('parameter 2')
+ax.set_zlabel('parameter 3')
+ax.axes.set_xlim3d(left=0, right=8)
+ax.axes.set_ylim3d(bottom=0, top=8)
+ax.axes.set_zlim3d(bottom=0, top=8)
+ax.legend()
 plt.show()
 
-#plotting decision boundary on parameter 1 and 3
-x = []
-y = []
-#print(q5.data_lst)
+# this is for 3D decision boundary of parameter 2,3,4
+fig = plt.figure()
+ax = plt.axes(projection='3d')
+x_data=[]
+y_data=[]
+z_data=[]
 for i in range(50):
-  # print(q5.data_lst[i])
-   x.append(q5.data_lst[i][1])
-   y.append(q5.data_lst[i][3])
-#print(x)
-plt.scatter(x,y,color='red',label='Setosa')
-x = []
-y = []
+    x_data.append(q5.data_lst[i][2])
+for i in range(50):
+    y_data.append(q5.data_lst[i][3])
+for i in range(50):
+    z_data.append(q5.data_lst[i][4])
+ax.scatter3D(x_data, y_data, z_data, c=z_data, cmap='Greens', label = 'Setosa');
+x_data=[]
+y_data=[]
+z_data=[]
 for i in range(50,100):
-   x.append(q5.data_lst[i][1])
-   y.append(q5.data_lst[i][3])
-plt.scatter(x,y,color='blue',label='Versicolor')
-x = []
-y = []
+    x_data.append(q5.data_lst[i][2])
+for i in range(50,100):
+    y_data.append(q5.data_lst[i][3])
+for i in range(50,100):
+    z_data.append(q5.data_lst[i][4])
+ax.scatter3D(x_data, y_data, z_data, c=z_data, cmap='Reds', label = 'Versicolor');
+x_data=[]
+y_data=[]
+z_data=[]
 for i in range(100,150):
-   x.append(q5.data_lst[i][1])
-   y.append(q5.data_lst[i][3])
-plt.scatter(x,y,color='green',label='Virginica')
+    x_data.append(q5.data_lst[i][2])
+for i in range(100,150):
+    y_data.append(q5.data_lst[i][3])
+for i in range(100,150):
+    z_data.append(q5.data_lst[i][4])
+ax.scatter3D(x_data, y_data, z_data, c=z_data, cmap='Blues', label = 'Virginica');
 
-#print(result1[0])
-x = np.linspace(0,10,100)
-y = -(result1[0][0]/result1[0][3]) - (result1[0][1]/result1[0][3])*x
-plt.plot(x,y)
-plt.xlabel("Parameter1")
-plt.ylabel("Parameter3")
-plt.legend()
-plt.savefig("Q5a/fig5.png")
-plt.title("Decision Boundary")
+def f2(x, y, result):
+
+    return  (result[0][0] - (result[0][2]*x) - (result[0][3]*y) )/result[0][4]
+
+x = np.linspace(-6, 6, 30)
+y = np.linspace(-6, 6, 30)
+X, Y = np.meshgrid(x, y)
+Z = f2(X, Y, result1)
+ax.contour3D(X, Y, Z, 50, cmap='binary')
+ax.set_xlabel('parameter 2')
+ax.set_ylabel('parameter 3')
+ax.set_zlabel('parameter 4')
+ax.axes.set_xlim3d(left=0, right=8)
+ax.axes.set_ylim3d(bottom=0, top=8)
+ax.axes.set_zlim3d(bottom=0, top=8)
+ax.legend()
 plt.show()
 
-#plotting decision boundary on parameter 1 and 4
-x = []
-y = []
-#print(q5.data_lst)
+# this is for 3D decision boundary of parameter1,3,4
+fig = plt.figure()
+ax = plt.axes(projection='3d')
+x_data=[]
+y_data=[]
+z_data=[]
 for i in range(50):
-  # print(q5.data_lst[i])
-   x.append(q5.data_lst[i][1])
-   y.append(q5.data_lst[i][4])
-#print(x)
-plt.scatter(x,y,color='red',label='Setosa')
-x = []
-y = []
-for i in range(50,100):
-   x.append(q5.data_lst[i][1])
-   y.append(q5.data_lst[i][4])
-plt.scatter(x,y,color='blue',label='Versicolor')
-x = []
-y = []
-for i in range(100,150):
-   x.append(q5.data_lst[i][1])
-   y.append(q5.data_lst[i][4])
-plt.scatter(x,y,color='green',label='Virginica')
-
-#print(result1[0])
-x = np.linspace(0,10,100)
-y = -(result1[0][0]/result1[0][4]) - (result1[0][1]/result1[0][4])*x
-plt.plot(x,y)
-plt.xlabel("Parameter1")
-plt.ylabel("Parameter4")
-plt.title("Decision Boundary")
-plt.legend()
-plt.savefig("Q5a/fig6.png")
-plt.show()
-
-#plotting decision boundary on parameter 2 and 3
-x = []
-y = []
-#print(q5.data_lst)
+    x_data.append(q5.data_lst[i][1])
 for i in range(50):
-  # print(q5.data_lst[i])
-   x.append(q5.data_lst[i][2])
-   y.append(q5.data_lst[i][3])
-#print(x)
-plt.scatter(x,y,color='red',label='Setosa')
-x = []
-y = []
-for i in range(50,100):
-   x.append(q5.data_lst[i][2])
-   y.append(q5.data_lst[i][3])
-plt.scatter(x,y,color='blue',label='Versicolor')
-x = []
-y = []
-for i in range(100,150):
-   x.append(q5.data_lst[i][2])
-   y.append(q5.data_lst[i][3])
-plt.scatter(x,y,color='green',label='Virginica')
-
-#print(result1[0])
-x = np.linspace(0,10,100)
-y = -(result1[0][0]/result1[0][3]) - (result1[0][2]/result1[0][3])*x
-plt.plot(x,y)
-plt.xlabel("Parameter2")
-plt.ylabel("Parameter3")
-plt.title("Decision Boundary")
-plt.legend()
-plt.savefig("Q5a/fig7.png")
-plt.show()
-
-#plotting decision boundary on parameter 2 and 4
-x = []
-y = []
-#print(q5.data_lst)
+    y_data.append(q5.data_lst[i][3])
 for i in range(50):
-  # print(q5.data_lst[i])
-   x.append(q5.data_lst[i][2])
-   y.append(q5.data_lst[i][4])
-#print(x)
-plt.scatter(x,y,color='red',label='Setosa')
-x = []
-y = []
+    z_data.append(q5.data_lst[i][4])
+ax.scatter3D(x_data, y_data, z_data, c=z_data, cmap='Greens', label = 'Setosa');
+x_data=[]
+y_data=[]
+z_data=[]
 for i in range(50,100):
-   x.append(q5.data_lst[i][2])
-   y.append(q5.data_lst[i][4])
-plt.scatter(x,y,color='blue',label='Versicolor')
-x = []
-y = []
+    x_data.append(q5.data_lst[i][1])
+for i in range(50,100):
+    y_data.append(q5.data_lst[i][3])
+for i in range(50,100):
+    z_data.append(q5.data_lst[i][4])
+ax.scatter3D(x_data, y_data, z_data, c=z_data, cmap='Reds', label = 'Versicolor');
+x_data=[]
+y_data=[]
+z_data=[]
 for i in range(100,150):
-   x.append(q5.data_lst[i][2])
-   y.append(q5.data_lst[i][4])
-plt.scatter(x,y,color='green',label='Virginica')
+    x_data.append(q5.data_lst[i][1])
+for i in range(100,150):
+    y_data.append(q5.data_lst[i][3])
+for i in range(100,150):
+    z_data.append(q5.data_lst[i][4])
+ax.scatter3D(x_data, y_data, z_data, c=z_data, cmap='Blues', label = 'Virginica');
 
-#print(result1[0])
-x = np.linspace(0,10,100)
-y = -(result1[0][0]/result1[0][4]) - (result1[0][2]/result1[0][4])*x
-plt.plot(x,y)
-plt.xlabel("Parameter2")
-plt.ylabel("Parameter4")
-plt.title("Decision Boundary")
-plt.legend()
-plt.savefig("Q5a/fig8.png")
+def f3(x, y, result):
+
+    return  (result[0][0] - (result[0][1]*x) - (result[0][3]*y) )/result[0][4]
+
+x = np.linspace(-6, 6, 30)
+y = np.linspace(-6, 6, 30)
+X, Y = np.meshgrid(x, y)
+Z = f3(X, Y, result1)
+ax.contour3D(X, Y, Z, 50, cmap='binary')
+ax.set_xlabel('parameter 1')
+ax.set_ylabel('parameter 3')
+ax.set_zlabel('parameter 4')
+ax.axes.set_xlim3d(left=0, right=8)
+ax.axes.set_ylim3d(bottom=0, top=8)
+ax.axes.set_zlim3d(bottom=0, top=8)
+ax.legend()
 plt.show()
-
-#plotting decision boundary on parameter 3 and 4
-x = []
-y = []
-#print(q5.data_lst)
+# this is for 3D decision boundary of parameter1,2,4
+fig = plt.figure()
+ax = plt.axes(projection='3d')
+x_data=[]
+y_data=[]
+z_data=[]
 for i in range(50):
-  # print(q5.data_lst[i])
-   x.append(q5.data_lst[i][3])
-   y.append(q5.data_lst[i][4])
-#print(x)
-plt.scatter(x,y,color='red',label='Setosa')
-x = []
-y = []
+    x_data.append(q5.data_lst[i][1])
+for i in range(50):
+    y_data.append(q5.data_lst[i][2])
+for i in range(50):
+    z_data.append(q5.data_lst[i][4])
+ax.scatter3D(x_data, y_data, z_data, c=z_data, cmap='Greens', label = 'Setosa');
+x_data=[]
+y_data=[]
+z_data=[]
 for i in range(50,100):
-   x.append(q5.data_lst[i][3])
-   y.append(q5.data_lst[i][4])
-plt.scatter(x,y,color='blue',label='Versicolor')
-x = []
-y = []
+    x_data.append(q5.data_lst[i][1])
+for i in range(50,100):
+    y_data.append(q5.data_lst[i][2])
+for i in range(50,100):
+    z_data.append(q5.data_lst[i][4])
+ax.scatter3D(x_data, y_data, z_data, c=z_data, cmap='Reds', label = 'Versicolor');
+x_data=[]
+y_data=[]
+z_data=[]
 for i in range(100,150):
-   x.append(q5.data_lst[i][3])
-   y.append(q5.data_lst[i][4])
-plt.scatter(x,y,color='green',label='Virginica')
+    x_data.append(q5.data_lst[i][1])
+for i in range(100,150):
+    y_data.append(q5.data_lst[i][2])
+for i in range(100,150):
+    z_data.append(q5.data_lst[i][4])
+ax.scatter3D(x_data, y_data, z_data, c=z_data, cmap='Blues', label = 'Virginica');
 
-#print(result1[0])
-x = np.linspace(0,10,100)
-y = -(result1[0][0]/result1[0][4]) - (result1[0][3]/result1[0][4])*x
-plt.plot(x,y)
-plt.xlabel("Parameter3")
-plt.ylabel("Parameter4")
-plt.title("Decision Boundary")
-plt.legend()
-plt.savefig("Q5a/fig9.png")
+def f4(x, y, result):
+
+    return  (result[0][0] - (result[0][1]*x) - (result[0][2]*y) )/result[0][4]
+
+x = np.linspace(-6, 6, 30)
+y = np.linspace(-6, 6, 30)
+X, Y = np.meshgrid(x, y)
+Z = f4(X, Y, result1)
+ax.contour3D(X, Y, Z, 50, cmap='binary')
+ax.set_xlabel('parameter 1')
+ax.set_ylabel('parameter 2')
+ax.set_zlabel('parameter 4')
+ax.axes.set_xlim3d(left=0, right=8)
+ax.axes.set_ylim3d(bottom=0, top=8)
+ax.axes.set_zlim3d(bottom=0, top=8)
+ax.legend()
 plt.show()
-'''
